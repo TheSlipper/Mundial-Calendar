@@ -13,7 +13,8 @@ public class MainFrameLogo extends JPanel {
 
 
     public MainFrameLogo() {
-        setPreferredSize(new Dimension(768, 240));
+//        setPreferredSize(new Dimension(768, 240));
+        setPreferredSize(new Dimension(1000, 240));
         try {
             image = ImageIO.read(new File(pathToImage));
         } catch (Exception exc) {
@@ -25,6 +26,6 @@ public class MainFrameLogo extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(image, 0, 0, this);
+        g.drawImage(image, 120, 0, this);
     }
 }
