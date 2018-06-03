@@ -13,7 +13,7 @@ public class MainFrame extends JFrame implements ActionListener {
 
     private void _setUpMetaData() {
         // TODO: Implement loading settings from a txt file
-        this.setSize(1280, 450);
+        this.setSize(920, 330);
         this.setDefaultCloseOperation(MainFrame.EXIT_ON_CLOSE);
         this.setTitle("2018 Mundial Calendar");
         this.setLocation(350, 150);
@@ -25,27 +25,37 @@ public class MainFrame extends JFrame implements ActionListener {
         //TODO: Implement a method that will read the font from the assets file and use it in those buttons
         logo = new MainFrameLogo();
 
-        buttons = new JButton[4];
+        buttons = new JButton[6];
 
         buttons[0] = new JButton("Browse the Calendar");
-        buttons[0].setPreferredSize(new Dimension(300, 100));
-        buttons[0].setFont(new Font("assets/fonts/sfdr.otf", Font.PLAIN, 20));
+//        buttons[0].setPreferredSize(new Dimension(300, 100));
+//        buttons[0].setFont(new Font("assets/fonts/sfdr.otf", Font.PLAIN, 20));
         buttons[0].addActionListener(this);
 
-        buttons[1] = new JButton("Add an Event");
-        buttons[1].setPreferredSize(new Dimension(300, 100));
-        buttons[1].setFont(new Font("assets/fonts/sfdr.otf", Font.PLAIN, 20));
+        buttons[1] = new JButton("Add an event");
+//        buttons[1].setPreferredSize(new Dimension(300, 80));
+//        buttons[1].setFont(new Font("assets/fonts/sfdr.otf", Font.PLAIN, 20));
         buttons[1].addActionListener(this);
 
-        buttons[2] = new JButton("Edit Calendar Settings");
-        buttons[2].setPreferredSize(new Dimension(300, 100));
-        buttons[2].setFont(new Font("Arial", Font.PLAIN, 20));
+        buttons[2] = new JButton("Edit an Event");
+//        buttons[2].setPreferredSize(new Dimension(300, 80));
+//        buttons[2].setFont(new Font("assets/fonts/sfdr.otf", Font.PLAIN, 20));
         buttons[2].addActionListener(this);
 
-        buttons[3] = new JButton("Exit the program");
-        buttons[3].setPreferredSize(new Dimension(300, 100));
-        buttons[3].setFont(new Font("assets/fonts/sfdr.otf", Font.PLAIN, 20));
+        buttons[3] = new JButton("Delete an Event");
+//        buttons[3].setPreferredSize(new Dimension(300, 80));
+//        buttons[3].setFont(new Font("assets/fonts/sfdr.otf", Font.PLAIN, 20));
         buttons[3].addActionListener(this);
+
+        buttons[4] = new JButton("Edit Calendar Settings");
+//        buttons[4].setPreferredSize(new Dimension(300, 80));
+//        buttons[4].setFont(new Font("Arial", Font.PLAIN, 20));
+        buttons[4].addActionListener(this);
+
+        buttons[5] = new JButton("Exit the program");
+//        buttons[5].setPreferredSize(new Dimension(300, 50));
+//        buttons[5].setFont(new Font("assets/fonts/sfdr.otf", Font.PLAIN, 20));
+        buttons[5].addActionListener(this);
     }
 
     private void _addObjects() {
@@ -54,6 +64,8 @@ public class MainFrame extends JFrame implements ActionListener {
         add(buttons[1]);
         add(buttons[2]);
         add(buttons[3]);
+        add(buttons[4]);
+        add(buttons[5]);
     }
 
     public MainFrame() {
@@ -66,7 +78,9 @@ public class MainFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         Object obj = e.getSource();
         if (obj == buttons[0]) {
-            new BrowseCalendarFrame();
+            new CalendarBrowseFrame();
+        } else if (obj == buttons[1]) {
+            new CalendarAddFrame();
         }
     }
 }

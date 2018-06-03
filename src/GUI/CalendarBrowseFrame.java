@@ -6,7 +6,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.table.*;
 
-public class BrowseCalendarFrame extends JFrame implements ActionListener{
+public class CalendarBrowseFrame extends JFrame implements ActionListener{
 
     private DefaultTableModel model;
     private Calendar cal = new GregorianCalendar();
@@ -42,7 +42,7 @@ public class BrowseCalendarFrame extends JFrame implements ActionListener{
     }
 
     private void _setUpMetaData() {
-        this.setDefaultCloseOperation(BrowseCalendarFrame.DISPOSE_ON_CLOSE);
+        this.setDefaultCloseOperation(CalendarBrowseFrame.DISPOSE_ON_CLOSE);
         this.setTitle("The Calendar");
         this.setSize(300,200);
         this.setLocation(1300, 300);
@@ -82,7 +82,7 @@ public class BrowseCalendarFrame extends JFrame implements ActionListener{
         this.add(infoButton, BorderLayout.SOUTH);
     }
 
-    public BrowseCalendarFrame() {
+    public CalendarBrowseFrame() {
         _setUpMetaData();
         _initialiseObjects();
         _addObjects();
