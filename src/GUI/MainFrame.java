@@ -10,7 +10,6 @@ public class MainFrame extends JFrame implements ActionListener {
     private JButton[] buttons;
     private MainFrameLogo logo;
 
-
     private void _setUpMetaData() {
         // TODO: Implement loading settings from a txt file
         this.setSize(920, 330);

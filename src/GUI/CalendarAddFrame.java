@@ -38,6 +38,7 @@ public class CalendarAddFrame extends JFrame implements ActionListener {
         int weeks = cal.getActualMaximum(Calendar.WEEK_OF_MONTH);
 
         model.setRowCount(0);
+        weeks = 6;
         model.setRowCount(weeks);
 
         int i = startDay-1;
@@ -52,7 +53,7 @@ public class CalendarAddFrame extends JFrame implements ActionListener {
     private void _setUpMetaData() {
         this.setDefaultCloseOperation(CalendarBrowseFrame.DISPOSE_ON_CLOSE);
         this.setTitle("Pick the date");
-        this.setSize(303,300);
+        this.setSize(303,330);
         this.setLocation(1300, 300);
         this.setLayout(new FlowLayout());
         this.setVisible(true);
@@ -90,7 +91,7 @@ public class CalendarAddFrame extends JFrame implements ActionListener {
         model = new DefaultTableModel(null, columns);
         table = new JTable(model);
         pane = new JScrollPane(table);
-        pane.setPreferredSize(new Dimension(300, 86));
+        pane.setPreferredSize(new Dimension(300, 102));
 
         submitButton = new JButton("Submit");
         submitButton.addActionListener(this);
