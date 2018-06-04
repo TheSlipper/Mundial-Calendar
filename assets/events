@@ -17,3 +17,27 @@
 ###
 ###   EVENTS:
 ###
+[RUS - ARA]
+Day =  14
+Month = 06
+Year = 2018
+StartTime = 17:00
+StartTime = 18:45
+Description = Russia vs Saudi Arabia (Moscow)
+
+[POR - SPA]
+Day =  15
+Month = 06
+Year = 2018
+StartTime = 20:00
+StartTime = 21:45
+Description = Portugal vs Spain (Sochi)
+
+[FRA - AUS]
+Day =  16
+Month = 06
+Year = 2018
+StartTime = 12:00
+StartTime = 13:45
+Description = France vs Australia (Kazan)
+

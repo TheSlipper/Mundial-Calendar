@@ -1,4 +1,4 @@
-import GUI.MainFrame;
+import GUI.LoginFrame;
 
 import java.awt.*;
 
@@ -7,7 +7,8 @@ public class Calendar {
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new MainFrame();
+                // new AdminMainFrame();
+                new LoginFrame();
             }
         });
     }

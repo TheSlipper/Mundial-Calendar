@@ -2,16 +2,14 @@ package CalendarData;
 
 import javax.swing.*;
 import java.io.*;
+import java.util.ArrayList;
 
 public class EventQueryProcessor {
 
-    private  static FileWriter fw;
-    private static BufferedWriter bw;
-
     public static void addEvent(CalendarEvent event) {
         try {
-            fw = new FileWriter("assets/events", true);
-            bw = new BufferedWriter(fw);
+            FileWriter fw = new FileWriter("assets/events", true);
+            BufferedWriter bw = new BufferedWriter(fw);
 
             bw.write('[' + event.getName() + ']' + "\r\n");
             if(event.getDay() > 9)
@@ -46,11 +44,35 @@ public class EventQueryProcessor {
             bw.close();
 
         } catch (IOException exc) {
-            JOptionPane.showMessageDialog(null, exc.getMessage());
+            JOptionPane.showMessageDialog(null, "Error: " + exc.getMessage());
         } catch (Exception exc) {
             // TODO: Handle this error by printing out the err.println in some text file later
-            JOptionPane.showMessageDialog(null, "Unknown error has occured");
+            JOptionPane.showMessageDialog(null, "Error: Unknown error has occured");
         }
+    }
+
+    public static ArrayList<CalendarEvent> getEventByDate(byte day, byte month, short year) {
+        ArrayList<CalendarEvent> events = new ArrayList<CalendarEvent>();
+
+        try {
+            FileReader fr = new FileReader("assets/events");
+            BufferedReader br = new BufferedReader(fr);
+            CalendarEvent eventHelper;
+            String stringHelper;
+            int counter = 0;
+
+            while((stringHelper = br.readLine()) != null) {
+                // TODO: Do some stuff
+
+            }
+            br.close();
+        } catch (FileNotFoundException e) {
+            JOptionPane.showMessageDialog(null, "Error: File not found exception");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return events;
     }
 
 }

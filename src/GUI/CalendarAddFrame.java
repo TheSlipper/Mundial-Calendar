@@ -35,15 +35,14 @@ public class CalendarAddFrame extends JFrame implements ActionListener {
 
         int startDay = cal.get(Calendar.DAY_OF_WEEK);
         int numberOfDays = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
-        int weeks = cal.getActualMaximum(Calendar.WEEK_OF_MONTH);
+        int weeks = 6;
 
         model.setRowCount(0);
-        weeks = 6;
         model.setRowCount(weeks);
 
         int i = startDay-1;
 
-        for (int day = 1;day <= numberOfDays; day++) {
+        for (int day = 1; day <= numberOfDays; day++) {
             model.setValueAt(day, i/7 , i%7 );
             i++;
         }
@@ -135,6 +134,14 @@ public class CalendarAddFrame extends JFrame implements ActionListener {
         return day;
     }
 
+    private void _clearInput() {
+        textFields[0].setText("");
+        textFields[1].setText("");
+        textFields[2].setText("");
+        textFields[3].setText("");
+        JOptionPane.showMessageDialog(null, "Added to your events!");
+    }
+
     private void  _addEvent() {
         // TODO: Add Exceptions and check for typos when entering this data!!!
         CalendarEvent calEvent = new CalendarEvent();
@@ -155,6 +162,7 @@ public class CalendarAddFrame extends JFrame implements ActionListener {
         calEvent.setMonth((cal.get(Calendar.MONTH)+1));
         calEvent.setYear(cal.get(Calendar.YEAR));
         EventQueryProcessor.addEvent(calEvent);
+        _clearInput();
     }
 
     @Override

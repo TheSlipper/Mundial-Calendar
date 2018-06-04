@@ -27,7 +27,7 @@ public class CalendarBrowseFrame extends JFrame implements ActionListener{
 
         int startDay = cal.get(Calendar.DAY_OF_WEEK);
         int numberOfDays = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
-        int weeks = cal.getActualMaximum(Calendar.WEEK_OF_MONTH);
+        int weeks = 6;
 
         model.setRowCount(0);
         model.setRowCount(weeks);
@@ -36,7 +36,7 @@ public class CalendarBrowseFrame extends JFrame implements ActionListener{
 
         for (int day = 1;day <= numberOfDays; day++) {
             model.setValueAt(day, i/7 , i%7 );
-                i++;
+            i++;
         }
 
     }
@@ -66,6 +66,7 @@ public class CalendarBrowseFrame extends JFrame implements ActionListener{
         model = new DefaultTableModel(null, columns);
         table = new JTable(model);
         pane = new JScrollPane(table);
+        pane.setPreferredSize(new Dimension(300, 102));
 
         infoButton = new JButton("Get Info");
         infoButton.addActionListener(this);

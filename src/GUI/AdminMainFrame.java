@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MainFrame extends JFrame implements ActionListener {
+public class AdminMainFrame extends JFrame implements ActionListener {
 
     private JButton[] buttons;
     private MainFrameLogo logo;
@@ -13,7 +13,7 @@ public class MainFrame extends JFrame implements ActionListener {
     private void _setUpMetaData() {
         // TODO: Implement loading settings from a txt file
         this.setSize(920, 330);
-        this.setDefaultCloseOperation(MainFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(AdminMainFrame.EXIT_ON_CLOSE);
         this.setTitle("2018 Mundial Calendar");
         this.setLocation(350, 150);
         this.setVisible(true);
@@ -67,7 +67,7 @@ public class MainFrame extends JFrame implements ActionListener {
         add(buttons[5]);
     }
 
-    public MainFrame() {
+    public AdminMainFrame() {
         _setUpMetaData();
         _initialiseObjects();
         _addObjects();
@@ -80,6 +80,14 @@ public class MainFrame extends JFrame implements ActionListener {
             new CalendarBrowseFrame();
         } else if (obj == buttons[1]) {
             new CalendarAddFrame();
+        } else if (obj == buttons[2]) {
+
+        } else if (obj == buttons[3]) {
+
+        } else if (obj == buttons[4]) {
+
+        } else if (obj == buttons[5]) {
+            System.exit(0);
         }
     }
 }
