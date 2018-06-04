@@ -52,28 +52,40 @@ public class CalendarAddFrame extends JFrame implements ActionListener {
     private void _setUpMetaData() {
         this.setDefaultCloseOperation(CalendarBrowseFrame.DISPOSE_ON_CLOSE);
         this.setTitle("Pick the date");
-        this.setSize(303,330);
+        this.setSize(303,430);
         this.setLocation(1300, 300);
         this.setLayout(new FlowLayout());
         this.setVisible(true);
     }
 
     private void _initialiseObjects() {
-        textFields = new JTextField[4];
+        textFields = new JTextField[8];
         textFields[0] = new JTextField();
-        textFields[0].setColumns(10);
+        textFields[0].setColumns(17);
         textFields[1] = new JTextField();
-        textFields[1].setColumns(10);
+        textFields[1].setColumns(21);
         textFields[2] = new JTextField();
-        textFields[2].setColumns(10);
+        textFields[2].setColumns(17);
         textFields[3] = new JTextField();
-        textFields[3].setColumns(10);
+        textFields[3].setColumns(17);
+        textFields[4] =  new JTextField();
+        textFields[4] .setColumns(20);
+        textFields[5] =  new JTextField();
+        textFields[5] .setColumns(20);
+        textFields[6] =  new JTextField();
+        textFields[6] .setColumns(21);
+        textFields[7] =  new JTextField();
+        textFields[7] .setColumns(23);
 
-        inputLabels = new JLabel[4];
+        inputLabels = new JLabel[8];
         inputLabels [0] = new JLabel("Name of the Event: ");
         inputLabels [1] = new JLabel("Description: ");
         inputLabels [2] = new JLabel("Start time (HH:MM): ");
         inputLabels [3] = new JLabel("End time (HH:MM): ");
+        inputLabels [4] = new JLabel("Team A squad: ");
+        inputLabels [5] = new JLabel("Team B squad: ");
+        inputLabels [6] = new JLabel("Ticket price: ");
+        inputLabels [7] = new JLabel("Stadium: ");
 
         label1 = new JLabel();
         label1.setHorizontalAlignment(SwingConstants.CENTER);
@@ -117,6 +129,18 @@ public class CalendarAddFrame extends JFrame implements ActionListener {
         this.add(inputLabels[3]);
         this.add(textFields[3]);
 
+        this.add(inputLabels[4]);
+        this.add(textFields[4]);
+
+        this.add(inputLabels[5]);
+        this.add(textFields[5]);
+
+        this.add(inputLabels[6]);
+        this.add(textFields[6]);
+
+        this.add(inputLabels[7]);
+        this.add(textFields[7]);
+
         this.add(submitButton);
     }
 
@@ -139,6 +163,10 @@ public class CalendarAddFrame extends JFrame implements ActionListener {
         textFields[1].setText("");
         textFields[2].setText("");
         textFields[3].setText("");
+        textFields[4].setText("");
+        textFields[5].setText("");
+        textFields[6].setText("");
+        textFields[7].setText("");
         JOptionPane.showMessageDialog(null, "Added to your events!");
     }
 
@@ -161,6 +189,12 @@ public class CalendarAddFrame extends JFrame implements ActionListener {
         calEvent.setDay(_getSelectedDay());
         calEvent.setMonth((cal.get(Calendar.MONTH)+1));
         calEvent.setYear(cal.get(Calendar.YEAR));
+
+        calEvent.setTeamASquad(textFields[4].getText());
+        calEvent.setTeamBSquad(textFields[5].getText());
+        calEvent.setTicketPrice(Double.parseDouble(textFields[6].getText()));
+        calEvent.setStadium(textFields[7].getText());
+
         EventQueryProcessor.addEvent(calEvent);
         _clearInput();
     }

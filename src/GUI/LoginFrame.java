@@ -13,7 +13,8 @@ public class LoginFrame extends JFrame implements ActionListener {
 
     // TODO: Implement encryption for users
 
-    private JTextField loginTextField, passwdTextField;
+    private JTextField loginTextField;
+    private JPasswordField  passwdTextField;
     private JLabel  loginLabel, passwdLabel;
     private JButton loginButton;
     private final String[] userGroups = {"Administrator", "User"};
@@ -30,7 +31,7 @@ public class LoginFrame extends JFrame implements ActionListener {
     private  void _initialiseObjects() {
         loginTextField = new JTextField();
         loginTextField.setColumns(12);
-        passwdTextField = new JTextField();
+        passwdTextField = new JPasswordField();
         passwdTextField.setColumns(12);
 
         loginLabel = new JLabel("Login: ");

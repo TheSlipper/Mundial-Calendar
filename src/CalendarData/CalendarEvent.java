@@ -1,7 +1,8 @@
 package CalendarData;
 
 public class CalendarEvent {
-    private  String name, description;
+    private  String name, description, teamASquad, teamBSquad, stadium;
+    private  double ticketPrice;
     private int day, month, year;
     private  int startTimeHour, startTimeMinute;
     private  int endTimeHour, endTimeMinute;
@@ -9,9 +10,13 @@ public class CalendarEvent {
     // Constructors
     public CalendarEvent() { }
 
-    public CalendarEvent(String name, String description, int day, int month, int year, int startTimeHour, int startTimeMinute, int endTimeHour, int endTimeMinute) {
+    public CalendarEvent(String name, String description, String teamASquad, String teamBSquad, String stadium, double ticketPrice, int day, int month, int year, int startTimeHour, int startTimeMinute, int endTimeHour, int endTimeMinute) {
         this.name = name;
         this.description = description;
+        this.teamASquad = teamASquad;
+        this.teamBSquad = teamBSquad;
+        this.stadium = stadium;
+        this.ticketPrice = ticketPrice;
         this.day = day;
         this.month = month;
         this.year = year;
@@ -92,5 +97,42 @@ public class CalendarEvent {
 
     public void setEndTimeMinute(int endTimeMinute) {
         this.endTimeMinute = endTimeMinute;
+    }
+
+    public String getTeamASquad() {
+        return teamASquad;
+    }
+
+    public void setTeamASquad(String teamASquad) {
+        this.teamASquad = teamASquad;
+    }
+
+    public String getTeamBSquad() {
+        return teamBSquad;
+    }
+
+    public void setTeamBSquad(String teamBSquad) {
+        this.teamBSquad = teamBSquad;
+    }
+
+    public String getStadium() {
+        return stadium;
+    }
+
+    public void setStadium(String stadium) {
+        this.stadium = stadium;
+    }
+
+    public double getTicketPrice() {
+        return ticketPrice;
+    }
+
+    public void setTicketPrice(double ticketPrice) {
+        this.ticketPrice = ticketPrice;
+    }
+
+    public String toString() {
+        return "Name: "  + this.getName()  + "\r\nDescription: " + this.getDescription() + "\r\nStadium: " + this.getStadium() + "\r\nDay: " + this.getDay()  + "\r\nMonth: " + this.getMonth() + "\r\nYear: " + this.getYear() +
+                "\r\nStarting at: " + this.getStartTimeHour() + ':' + this.getStartTimeMinute() + "\r\nEnds at: " + this.getEndTimeHour() + ':' + this.getEndTimeMinute();
     }
 }

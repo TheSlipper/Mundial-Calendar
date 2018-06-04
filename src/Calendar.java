@@ -7,7 +7,6 @@ public class Calendar {
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                // new AdminMainFrame();
                 new LoginFrame();
             }
         });

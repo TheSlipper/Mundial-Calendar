@@ -11,33 +11,36 @@
 #   Year = 1997
 #   StartTime = 13:15
 #   EndTime = 17:45
+#   TeamA-Squad = Anthony Lopes, Beto, Bruno Alves, Raphael Guerreiro, Ricardo Pereira, Cristiano Ronaldo, Gelson Martins, Andre Silva
+#   TeamB-Squad = Anthony Lopes, Beto, Bruno Alves, Raphael Guerreiro, Ricardo Pereira, Cristiano Ronaldo, Gelson Martins, Andre Silva
+#   TicketPrice = 300
+#   Stadium = Sochi
 #   Description = This should be a one line description. There are probably no restricted characters
 #
 
 ###
 ###   EVENTS:
 ###
-[RUS - ARA]
+[aisdiysa]
+Day =  21
+Month = 06
+Year = 2018
+StartTime = 11:11
+EndTime = 12:12
+TeamA-Squad = qowyeq, qwieyqi, qweyq9, 9qwye9q
+TeamB-Squad = qwye9q7, q9wey9q, qw9eyq9w, qw9ey9
+TicketPrice = 345.49
+Stadium = Biggest Stadium
+Description = aiydsgaiysgdi
+[Sucking cocks]
 Day =  14
 Month = 06
 Year = 2018
-StartTime = 17:00
-StartTime = 18:45
-Description = Russia vs Saudi Arabia (Moscow)
-
-[POR - SPA]
-Day =  15
-Month = 06
-Year = 2018
-StartTime = 20:00
-StartTime = 21:45
-Description = Portugal vs Spain (Sochi)
-
-[FRA - AUS]
-Day =  16
-Month = 06
-Year = 2018
 StartTime = 12:00
-StartTime = 13:45
-Description = France vs Australia (Kazan)
+EndTime = 15:00
+TeamA-Squad = Wolfer
+TeamB-Squad = The whole mythic dawn
+TicketPrice = 1.49
+Stadium = Imperial Arena
+Description = Wolfer sucks cocks
 
