@@ -93,19 +93,25 @@ public class CalendarBrowseFrame extends JFrame implements ActionListener{
     }
 
     private void _displayInfo() {
-        // TODO: Display all of the data (not only the first entry) and do it in some elegant manner
         // Get the day
-        int row = table.getSelectedRow();
-        int column = table.getSelectedColumn();
-        int day = (int)table.getValueAt(row, column);
-        // Get the month
-        int month = (cal.get(Calendar.MONTH)+1);
-        // Get the year
-        int year = (cal.get(Calendar.YEAR));
+        try {
+            int row = table.getSelectedRow();
+            int column = table.getSelectedColumn();
+            int day = (int)table.getValueAt(row, column);
+            // Get the month
+            int month = (cal.get(Calendar.MONTH)+1);
+            // Get the year
+            int year = (cal.get(Calendar.YEAR));
 
-        ArrayList eventsList = EventQueryProcessor.getEventByDate(day, month, year);
-        String message = eventsList.get(0).toString();
-        JOptionPane.showMessageDialog(null, message);
+            ArrayList eventsList = EventQueryProcessor.getEventByDate(day, month, year);
+            String message = "";
+            for (int i=0; i < eventsList.size(); i++)
+                message = message + eventsList.get(i).toString()+"\r\n\r\n";
+            JOptionPane.showMessageDialog(null, message);
+        } catch (Exception exc) {
+            JOptionPane.showMessageDialog(null, "No events found during that day");
+        }
+
     }
 
     @Override

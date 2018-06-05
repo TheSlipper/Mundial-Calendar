@@ -6,9 +6,13 @@ public class CalendarEvent {
     private int day, month, year;
     private  int startTimeHour, startTimeMinute;
     private  int endTimeHour, endTimeMinute;
+    private int id;
 
     // Constructors
-    public CalendarEvent() { }
+    public CalendarEvent() {
+        this.id = EventQueryProcessor.EVENT_AMOUNT+1;
+        EventQueryProcessor.EVENT_AMOUNT++;
+    }
 
     public CalendarEvent(String name, String description, String teamASquad, String teamBSquad, String stadium, double ticketPrice, int day, int month, int year, int startTimeHour, int startTimeMinute, int endTimeHour, int endTimeMinute) {
         this.name = name;
@@ -24,6 +28,8 @@ public class CalendarEvent {
         this.startTimeMinute = startTimeMinute;
         this.endTimeHour = endTimeHour;
         this.endTimeMinute = endTimeMinute;
+        this.id = EventQueryProcessor.EVENT_AMOUNT+1;
+        EventQueryProcessor.EVENT_AMOUNT++;
     }
 
     // Getters and Setters
@@ -131,8 +137,16 @@ public class CalendarEvent {
         this.ticketPrice = ticketPrice;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String toString() {
-        return "Name: "  + this.getName()  + "\r\nDescription: " + this.getDescription() + "\r\nStadium: " + this.getStadium() + "\r\nDay: " + this.getDay()  + "\r\nMonth: " + this.getMonth() + "\r\nYear: " + this.getYear() +
+        return "ID: " + this.getId() + "\r\nName: "  + this.getName()  + "\r\nDescription: " + this.getDescription() + "\r\nStadium: " + this.getStadium() + "\r\nDay: " + this.getDay()  + "\r\nMonth: " + this.getMonth() + "\r\nYear: " + this.getYear() +
                 "\r\nStarting at: " + this.getStartTimeHour() + ':' + this.getStartTimeMinute() + "\r\nEnds at: " + this.getEndTimeHour() + ':' + this.getEndTimeMinute();
     }
 }
