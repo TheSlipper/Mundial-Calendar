@@ -22,18 +22,6 @@
 ###
 ###   EVENTS:
 ###
-<01>
-[aisdiysa]
-Day =  21
-Month = 06
-Year = 2018
-StartTime = 11:11
-EndTime = 12:12
-TeamA-Squad = qowyeq, qwieyqi, qweyq9, 9qwye9q
-TeamB-Squad = qwye9q7, q9wey9q, qw9eyq9w, qw9ey9
-TicketPrice = 345.49
-Stadium = Biggest Stadium
-Description = aiydsgaiysgdi
 
 
 <02>
@@ -89,4 +77,5 @@ TeamB-Squad = q9wye9qw
 TicketPrice = 123.0
 Stadium = Best
 Description = qwerqwer
-#
+
+

@@ -83,7 +83,7 @@ public class AdminMainFrame extends JFrame implements ActionListener {
         } else if (obj == buttons[2]) {
             new CalendarEditFrame();
         } else if (obj == buttons[3]) {
-
+            new CalendarDeleteFrame();
         } else if (obj == buttons[4]) {
 
         } else if (obj == buttons[5]) {

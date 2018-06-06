@@ -1,5 +1,7 @@
 package CalendarData;
 
+import GUI.CalendarDeleteFrame;
+
 import javax.swing.*;
 import java.io.*;
 import java.util.ArrayList;
@@ -79,7 +81,7 @@ public class EventQueryProcessor {
             JOptionPane.showMessageDialog(null, "Error: " + exc.getMessage());
         } catch (Exception exc) {
             // TODO: Handle this error by printing out the err.println in some text file later
-            JOptionPane.showMessageDialog(null, "Error: Unknown error has occured");
+            JOptionPane.showMessageDialog(null, "Error: " + exc.getMessage());
         }
     }
 
@@ -184,9 +186,48 @@ public class EventQueryProcessor {
         } catch (IOException e1) {
             e1.printStackTrace();
         }
-//            JOptionPane.showMessageDialog(null, );
-//            FileWriter fw = new FileWriter("assets/events");
-//            BufferedWriter bw = new BufferedWriter(fw);
+    }
+
+    public static void deleteEvent(CalendarEvent event) {
+
+        try {
+            // Strings used to transfer data from old file to the new file and the object indexNo
+            String helper;
+            StringBuffer inputBuffer = new StringBuffer();
+            int indexNo = 0, stageNo = 0;
+
+            //Reading part
+            FileReader fr = new FileReader("assets/events");
+            BufferedReader br = new BufferedReader(fr);
+
+
+            while ((helper = br.readLine()) != null) {
+                if (helper.isEmpty() || helper.charAt(0) == '#')
+                    inputBuffer.append(helper + "\r\n");
+
+                else {
+                    if (helper.charAt(0) == '<')
+                        indexNo++;
+
+                    if (event.getId() == indexNo) {
+                        inputBuffer.append("");
+                    } else
+                        inputBuffer.append(helper + "\r\n");
+                }
+            }
+            br.close();
+
+            FileWriter fw = new FileWriter("assets/events");
+            BufferedWriter bw = new BufferedWriter(fw);
+            String outputFileString = inputBuffer.toString();
+            bw.write(outputFileString);
+            bw.close();
+
+        } catch (FileNotFoundException e1) {
+            e1.printStackTrace();
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
     }
 
     public static ArrayList<CalendarEvent> getEventByDate(int day, int month, int year) {
@@ -200,8 +241,6 @@ public class EventQueryProcessor {
             int counter = 0;
 
             while((stringHelper = br.readLine()) != null) {
-                // TODO: Do some stuff
-                // 10 lines
                 if (stringHelper.isEmpty() || stringHelper.charAt(0) == '#')
                     continue;
                 else if (counter == 0) {
@@ -215,7 +254,6 @@ public class EventQueryProcessor {
                     eventHelper.setName(stringHelper.substring(1, stringHelper.length()-1));
                     counter++;
                 } else if (counter == 2) {
-                    // TODO: Make sure that days are two numbered or if they work like that:
                     eventHelper.setDay(Integer.parseInt(stringHelper.substring(7, stringHelper.length())));
                     counter++;
                 } else if (counter == 3) {
@@ -263,5 +301,6 @@ public class EventQueryProcessor {
 
         return events;
     }
+
 
 }
