@@ -1,0 +1,23 @@
+###
+###	MUNDIAL CALENDARY SETTINGS FILE
+###
+
+#
+#	WARNING:
+#	It is highly suggested for the users to use the built in "settings" option
+#	to manipulate the settings. Doing otherwise may result in errors.
+#
+#
+
+#administrationPanelHeight
+330
+#administrationPanelWidth 
+920
+#userPanelHeight
+330
+#userPanelWidth
+920
+#fontSize
+11
+#fontStyle (Plain = 0, Bold = 1, Italic = 2)
+1

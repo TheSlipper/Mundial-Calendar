@@ -83,7 +83,6 @@ public class SettingsLoader {
             br.close();
             SettingsLoader.setAdminFrameDimension(new Dimension(adminWidth, adminHeight));
             SettingsLoader.setUserFrameDimension(new Dimension(userWidth, userHeight));
-            System.out.println(adminHeight + " " + adminWidth);
         } catch (Exception exc) {
             JOptionPane.showMessageDialog(null, "Error:" + exc.getMessage(), "SETTINGS ERROR", JOptionPane.ERROR_MESSAGE);
         }

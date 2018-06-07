@@ -37,7 +37,7 @@ public class UserMainFrame extends JFrame implements ActionListener {
         this.buttons[1].addActionListener(this);
 
         this.buttons[2] = new JButton("Log out");
-        this.buttons[1].setFont(new Font("assets/fonts/sfdr.otf", SettingsLoader.getFontStyle(), SettingsLoader.getFontSize()));
+        this.buttons[2].setFont(new Font("assets/fonts/sfdr.otf", SettingsLoader.getFontStyle(), SettingsLoader.getFontSize()));
         this.buttons[2].addActionListener(this);
     }
 
@@ -61,6 +61,7 @@ public class UserMainFrame extends JFrame implements ActionListener {
             new CalendarBrowseFrame();
         } else if (obj == buttons[1]) {
             // TODO: Settings
+            new UserSettingsFrame();
         } else if (obj == buttons[2]) {
             new LoginFrame();
             this.dispose();

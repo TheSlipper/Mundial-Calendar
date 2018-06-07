@@ -103,7 +103,7 @@ public class AdminMainFrame extends JFrame implements ActionListener {
         } else if (obj == buttons[3]) {
             new CalendarDeleteFrame();
         } else if (obj == buttons[4]) {
-            new SettingsFrame();
+            new AdminSettingsFrame();
         } else if (obj == buttons[5]) {
             new LoginFrame();
             this.dispose();
