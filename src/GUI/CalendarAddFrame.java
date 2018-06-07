@@ -2,6 +2,7 @@ package GUI;
 
 import CalendarData.CalendarEvent;
 import CalendarData.EventQueryProcessor;
+import Settings.SettingsLoader;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;

@@ -187,7 +187,7 @@ public class CalendarDeleteFrame extends JFrame implements ActionListener {
         textFields[5].setText("");
         textFields[6].setText("");
         textFields[7].setText("");
-        JOptionPane.showMessageDialog(null, "Added to your events!");
+        eventsComboBox.removeAllItems();
     }
 
     private void _loadEventDataToTextFields(int index) {
@@ -223,8 +223,9 @@ public class CalendarDeleteFrame extends JFrame implements ActionListener {
             cal.add(Calendar.MONTH, +1);
             this._updateMonth();
         } else if (obj == deleteButton) {
-//            _submitEdittedEntry();
             EventQueryProcessor.deleteEvent(events.get(eventsComboBox.getSelectedIndex()));
+            JOptionPane.showMessageDialog(null, "The selected event has been successfully deleted");
+            this._clearInput();
         } else if (obj == loadEventButton) {
             this._loadEvents();
         } else if (obj == eventsComboBox) {

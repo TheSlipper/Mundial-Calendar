@@ -11,6 +11,7 @@ public class EventQueryProcessor {
     public static int EVENT_AMOUNT;
 
     public  static void setEventAmount() {
+        EventQueryProcessor.EVENT_AMOUNT = 0;
         try {
             FileReader fr = new FileReader("assets/events");
             BufferedReader br = new BufferedReader(fr);
@@ -21,7 +22,6 @@ public class EventQueryProcessor {
                 else if (helper.charAt(0) == '<')
                     EventQueryProcessor.EVENT_AMOUNT = Integer.parseInt(helper.substring(1,3));
             }
-
             br.close();
         } catch (FileNotFoundException e1) {
             e1.printStackTrace();
@@ -36,9 +36,9 @@ public class EventQueryProcessor {
             BufferedWriter bw = new BufferedWriter(fw);
 
             if (event.getId() > 9)
-                bw.write('<' + String.valueOf(event.getId()) + '>');
+                bw.write('<' + String.valueOf(event.getId()) + '>' + "\r\n");
             else
-                bw.write("<0" + String.valueOf(event.getId()) + '>');
+                bw.write("<0" + String.valueOf(event.getId()) + '>' + "\r\n");
 
             bw.write('[' + event.getName() + ']' + "\r\n");
             if(event.getDay() > 9)
@@ -86,7 +86,6 @@ public class EventQueryProcessor {
     }
 
     public static void editEvent(CalendarEvent event) {
-
         try {
             // Strings used to transfer data from old file to the new file and the object indexNo
             String helper;
@@ -104,7 +103,7 @@ public class EventQueryProcessor {
 
                 else {
                     if (helper.charAt(0) == '<')
-                        indexNo++;
+                        indexNo = Integer.parseInt(helper.substring(1,3));
 
                     if (event.getId() == indexNo) {
                      if (stageNo == 0) {
@@ -207,7 +206,7 @@ public class EventQueryProcessor {
 
                 else {
                     if (helper.charAt(0) == '<')
-                        indexNo++;
+                        indexNo = Integer.parseInt(helper.substring(1,3));
 
                     if (event.getId() == indexNo) {
                         inputBuffer.append("");

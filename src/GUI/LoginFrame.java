@@ -128,6 +128,10 @@ public class LoginFrame extends JFrame implements ActionListener {
                     this.dispose();
                 } else if (chooseGroup.getSelectedIndex() == 0 &&  !_isTheUserAnAdmin(enteredLogin))
                     JOptionPane.showMessageDialog(null, "The user is not an administrator!");
+                else if (chooseGroup.getSelectedIndex() == 1) {
+                    new UserMainFrame();
+                    this.dispose();
+                }
             } else
                 JOptionPane.showMessageDialog(null, "Incorrect password entered");
         } else
