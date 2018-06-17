@@ -13,7 +13,6 @@ public class AdminMainFrame extends JFrame implements ActionListener {
     private MainFrameLogo logo;
 
     private void _setUpMetaData() {
-        // TODO: Implement loading settings from a txt file
         this.setSize(SettingsLoader.getAdminFrameDimension());
         this.setDefaultCloseOperation(AdminMainFrame.EXIT_ON_CLOSE);
         this.setTitle("2018 Mundial Calendar (admin)");
@@ -23,45 +22,37 @@ public class AdminMainFrame extends JFrame implements ActionListener {
     }
 
     private void _initialiseObjects() {
-        //TODO: Implement a method that will read the font from the assets file and use it in those buttons
         this.logo = new MainFrameLogo();
 
-        this.buttons = new JButton[6];
+        this.buttons = new JButton[7];
 
-        this.buttons[0] = new JButton("Browse the Calendar");
-//        buttons[0].setPreferredSize(new Dimension(300, 100));
+        this.buttons[0] = new JButton("Search By...");
         buttons[0].setFont(new Font("assets/fonts/sfdr.otf", SettingsLoader.getFontStyle(), SettingsLoader.getFontSize()));
         this.buttons[0].addActionListener(this);
 
-        this.buttons[1] = new JButton("Add an event");
-//        buttons[1].setPreferredSize(new Dimension(300, 80));
-//        buttons[1].setFont(new Font("assets/fonts/sfdr.otf", Font.PLAIN, 20));
+        this.buttons[1] = new JButton("Browse the Calendar");
         buttons[1].setFont(new Font("assets/fonts/sfdr.otf", SettingsLoader.getFontStyle(), SettingsLoader.getFontSize()));
         this.buttons[1].addActionListener(this);
 
-        this.buttons[2] = new JButton("Edit an Event");
-//        buttons[2].setPreferredSize(new Dimension(300, 80));
-//        buttons[2].setFont(new Font("assets/fonts/sfdr.otf", Font.PLAIN, 20));
+        this.buttons[2] = new JButton("Add an event");
         buttons[2].setFont(new Font("assets/fonts/sfdr.otf", SettingsLoader.getFontStyle(), SettingsLoader.getFontSize()));
         this.buttons[2].addActionListener(this);
 
-        this.buttons[3] = new JButton("Delete an Event");
-//        buttons[3].setPreferredSize(new Dimension(300, 80));
-//        buttons[3].setFont(new Font("assets/fonts/sfdr.otf", Font.PLAIN, 20));
+        this.buttons[3] = new JButton("Edit an Event");
         buttons[3].setFont(new Font("assets/fonts/sfdr.otf", SettingsLoader.getFontStyle(), SettingsLoader.getFontSize()));
         this.buttons[3].addActionListener(this);
 
-        this.buttons[4] = new JButton("Edit Calendar Settings");
-//        buttons[4].setPreferredSize(new Dimension(300, 80));
-//        buttons[4].setFont(new Font("Arial", Font.PLAIN, 20));
+        this.buttons[4] = new JButton("Delete an Event");
         buttons[4].setFont(new Font("assets/fonts/sfdr.otf", SettingsLoader.getFontStyle(), SettingsLoader.getFontSize()));
         this.buttons[4].addActionListener(this);
 
-        this.buttons[5] = new JButton("Log out");
-//        buttons[5].setPreferredSize(new Dimension(300, 50));
-//        buttons[5].setFont(new Font("assets/fonts/sfdr.otf", Font.PLAIN, 20));
+        this.buttons[5] = new JButton("Edit Calendar Settings");
         buttons[5].setFont(new Font("assets/fonts/sfdr.otf", SettingsLoader.getFontStyle(), SettingsLoader.getFontSize()));
         this.buttons[5].addActionListener(this);
+
+        this.buttons[6] = new JButton("Log out");
+        buttons[6].setFont(new Font("assets/fonts/sfdr.otf", SettingsLoader.getFontStyle(), SettingsLoader.getFontSize()));
+        this.buttons[6].addActionListener(this);
     }
 
     private void _addObjects() {
@@ -95,16 +86,18 @@ public class AdminMainFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         Object obj = e.getSource();
         if (obj == buttons[0]) {
-            new CalendarBrowseFrame();
+            new SearchByFrame();
         } else if (obj == buttons[1]) {
-            new CalendarAddFrame();
+            new CalendarBrowseFrame();
         } else if (obj == buttons[2]) {
-            new CalendarEditFrame();
+            new CalendarAddFrame();
         } else if (obj == buttons[3]) {
-            new CalendarDeleteFrame();
+            new CalendarEditFrame();
         } else if (obj == buttons[4]) {
-            new AdminSettingsFrame();
+            new CalendarDeleteFrame();
         } else if (obj == buttons[5]) {
+            new AdminSettingsFrame();
+        } else if (obj == buttons[6]) {
             new LoginFrame();
             this.dispose();
         }

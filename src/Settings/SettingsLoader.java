@@ -9,7 +9,7 @@ public class SettingsLoader {
 
     private static Dimension adminFrameDimension, userFrameDimension;
     private static int fontSize, fontStyle;
-    private final static String confFilePath = "assets/settings";
+    private final static String confFilePath = "./assets/settings";
 
     // Getters and setters
     public static Dimension getAdminFrameDimension() {

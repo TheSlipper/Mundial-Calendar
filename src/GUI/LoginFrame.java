@@ -24,6 +24,7 @@ public class LoginFrame extends JFrame implements ActionListener {
         this.setDefaultCloseOperation(LoginFrame.DISPOSE_ON_CLOSE);
         this.setTitle("Login Screen");
         this.setSize(230,130);
+        this.setLocation(300, 150);
         this.setLayout(new FlowLayout());
         this.setVisible(true);
     }

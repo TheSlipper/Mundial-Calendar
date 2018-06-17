@@ -23,3 +23,69 @@
 ###   EVENTS:
 ###
 
+<01>
+[Russia vs Saudi Arabia]
+Day =  14
+Month = 06
+Year = 2018
+StartTime = 17:00
+EndTime = 19:00
+TeamA-Squad = Rosyjski Zawodnik1, Rosyjski Zawodnik2, Rosyjski Zawodnik3
+TeamB-Squad = Arabski Zawodnik 1, Arabski Zawodnik2, Arabski Zawodnik3
+TicketPrice = 345.99
+Stadium = Luzhniki
+Description = The first match of the Mundial
+
+<02>
+[Portugal vs Spain]
+Day =  15
+Month = 06
+Year = 2018
+StartTime = 20:00
+EndTime = 22:00
+TeamA-Squad = Zawodnik Portugalczyk1, Zawodnik Portugalczyk2, Zawodnik Portugalczyk3
+TeamB-Squad = Zawodnik Hiszpan1, Zawodnik Hiszpan2, Zawodnik Hiszpan3
+TicketPrice = 345.99
+Stadium = Sochi
+Description = A very interesting match
+
+<12>
+[Polska - Senegal]
+Day =  14
+Month = 06
+Year = 2018
+StartTime = 17:00
+EndTime = 19:00
+TeamA-Squad = Robert Lewandowski, Pazdan, Krychowiak, Błaszczykowski
+TeamB-Squad = Nazwisko1, Nazwisko2, Nazwisko3
+TicketPrice = 345.99
+Stadium = Podkrytaryena
+Description = Pierwszy mecz polski
+
+
+<13>
+[Polska - Ktośtam]
+Day =  14
+Month = 06
+Year = 2018
+StartTime = 14:15
+EndTime = 16:16
+TeamA-Squad = desdauhdiauhdiaushdi
+TeamB-Squad = ihqiwuehiquewhiuqwh
+TicketPrice = 345.99
+Stadium = weqweqe
+Description = ashdaihsidahiu
+
+<18>
+[Azejberdzan - aleale]
+Day =  14
+Month = 06
+Year = 2018
+StartTime = 11:14
+EndTime = 15:16
+TeamA-Squad = qwheqwheiqywheqywhe
+TeamB-Squad = qwyeqygweyqwve
+TicketPrice = 123.0
+Stadium = qwyehqyweh
+Description = uh8qwye8qyh
+

@@ -1,14 +1,23 @@
 package CalendarData;
 
-import GUI.CalendarDeleteFrame;
-
 import javax.swing.*;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class EventQueryProcessor {
 
     public static int EVENT_AMOUNT;
+
+    private static Comparator<String> ALPHABETICAL_ORDER = new Comparator<String>() {
+        public int compare(String str1, String str2) {
+            int res = String.CASE_INSENSITIVE_ORDER.compare(str1, str2);
+            if (res == 0) {
+                res = str1.compareTo(str2);
+            }
+            return res;
+        }
+    };
 
     public  static void setEventAmount() {
         EventQueryProcessor.EVENT_AMOUNT = 0;
@@ -229,7 +238,69 @@ public class EventQueryProcessor {
         }
     }
 
-    public static ArrayList<CalendarEvent> getEventByDate(int day, int month, int year) {
+    public static void sortByName(ArrayList<CalendarEvent> eventList, boolean isItAscSort) {
+        if (isItAscSort) {
+            for (int i = 1; i < eventList.size(); i++) {
+                for (int j = eventList.size() - 1; j >= 1; j--) {
+
+                    int whoFirst = ALPHABETICAL_ORDER.compare(eventList.get(j).getName(), eventList.get(j - 1).getName());
+
+                    if (whoFirst < 0) {
+                        CalendarEvent buffer = eventList.get(j - 1);
+                        eventList.set(j - 1, eventList.get(j));
+                        eventList.set(j, buffer);
+                    }
+                }
+            }
+        } else {
+            for (int i = 1; i < eventList.size(); i++) {
+                for (int j = eventList.size() - 1; j >= 1; j--) {
+
+                    int whoFirst = ALPHABETICAL_ORDER.compare(eventList.get(j).getName(), eventList.get(j - 1).getName());
+
+                    if (whoFirst > 0) {
+                        CalendarEvent buffer = eventList.get(j - 1);
+                        eventList.set(j - 1, eventList.get(j));
+                        eventList.set(j, buffer);
+                    }
+                }
+            }
+        }
+
+    }
+
+    public static void sortByStadium(ArrayList<CalendarEvent> eventList, boolean isItAscSort) {
+        if (isItAscSort) {
+            for (int i = 1; i < eventList.size(); i++) {
+                for (int j = eventList.size() - 1; j >= 1; j--) {
+
+                    int whoFirst = ALPHABETICAL_ORDER.compare(eventList.get(j).getStadium(), eventList.get(j - 1).getStadium());
+
+                    if (whoFirst < 0) {
+                        CalendarEvent buffer = eventList.get(j - 1);
+                        eventList.set(j - 1, eventList.get(j));
+                        eventList.set(j, buffer);
+                    }
+                }
+            }
+        } else {
+            for (int i = 1; i < eventList.size(); i++) {
+                for (int j = eventList.size() - 1; j >= 1; j--) {
+
+                    int whoFirst = ALPHABETICAL_ORDER.compare(eventList.get(j).getStadium(), eventList.get(j - 1).getStadium());
+
+                    if (whoFirst > 0) {
+                        CalendarEvent buffer = eventList.get(j - 1);
+                        eventList.set(j - 1, eventList.get(j));
+                        eventList.set(j, buffer);
+                    }
+                }
+            }
+        }
+
+    }
+
+    public static ArrayList<CalendarEvent> getEventsByDate(int day, int month, int year) {
         ArrayList<CalendarEvent> events = new ArrayList<CalendarEvent>();
 
         try {
@@ -301,5 +372,222 @@ public class EventQueryProcessor {
         return events;
     }
 
+    public static ArrayList<CalendarEvent> getEventsByName(String name) {
+        ArrayList<CalendarEvent> events = new ArrayList<CalendarEvent>();
+
+        try {
+            FileReader fr = new FileReader("assets/events");
+            BufferedReader br = new BufferedReader(fr);
+            CalendarEvent eventHelper = new CalendarEvent();
+            String stringHelper;
+            int counter = 0;
+
+            while((stringHelper = br.readLine()) != null) {
+                if (stringHelper.isEmpty() || stringHelper.charAt(0) == '#')
+                    continue;
+                else if (counter == 0) {
+                    eventHelper = new CalendarEvent();
+                    eventHelper.setId(Integer.parseInt(stringHelper.substring(1,3)));
+                    counter++;
+                }
+
+                else if (counter == 1) {
+                    // Reading
+                    eventHelper.setName(stringHelper.substring(1, stringHelper.length()-1));
+                    counter++;
+                } else if (counter == 2) {
+                    eventHelper.setDay(Integer.parseInt(stringHelper.substring(7, stringHelper.length())));
+                    counter++;
+                } else if (counter == 3) {
+                    eventHelper.setMonth(Integer.parseInt(stringHelper.substring(8, stringHelper.length())));
+                    counter++;
+                } else if (counter == 4) {
+                    eventHelper.setYear(Integer.parseInt(stringHelper.substring(7, stringHelper.length())));
+                    counter++;
+                } else if (counter == 5) {
+                    eventHelper.setStartTimeHour(Integer.parseInt(stringHelper.substring(12, 14)));
+                    eventHelper.setStartTimeMinute(Integer.parseInt(stringHelper.substring(15, 17)));
+                    counter++;
+                } else if (counter == 6) {
+                    eventHelper.setEndTimeHour(Integer.parseInt(stringHelper.substring(10, 12)));
+                    eventHelper.setEndTimeMinute(Integer.parseInt(stringHelper.substring(13, 15)));
+                    counter++;
+                } else if (counter == 7) {
+                    eventHelper.setTeamASquad(stringHelper.substring(14, stringHelper.length()));
+                    counter++;
+                } else if (counter == 8) {
+                    eventHelper.setTeamBSquad(stringHelper.substring(14, stringHelper.length()));
+                    counter++;
+                } else if (counter == 9) {
+                    eventHelper.setTicketPrice(Double.parseDouble(stringHelper.substring(14, stringHelper.length())));
+                    counter++;
+                } else if (counter == 10) {
+                    eventHelper.setStadium(stringHelper.substring(10, stringHelper.length()));
+                    counter++;
+                } else if (counter == 11) {
+                    eventHelper.setDescription(stringHelper.substring(14, stringHelper.length()));
+                    counter = 0;
+                    if (eventHelper.getName().toLowerCase().contains(name.toLowerCase())) {
+                        events.add(eventHelper);
+                    }
+                }
+            }
+            br.close();
+        } catch (FileNotFoundException e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+        }
+
+        return events;
+    }
+
+    public static ArrayList<CalendarEvent> getEventsByPlayerName(String playerName) {
+        ArrayList<CalendarEvent> events = new ArrayList<CalendarEvent>();
+
+        try {
+            FileReader fr = new FileReader("assets/events");
+            BufferedReader br = new BufferedReader(fr);
+            CalendarEvent eventHelper = new CalendarEvent();
+            String stringHelper;
+            int counter = 0;
+
+            while((stringHelper = br.readLine()) != null) {
+                if (stringHelper.isEmpty() || stringHelper.charAt(0) == '#')
+                    continue;
+                else if (counter == 0) {
+                    eventHelper = new CalendarEvent();
+                    eventHelper.setId(Integer.parseInt(stringHelper.substring(1,3)));
+                    counter++;
+                }
+
+                else if (counter == 1) {
+                    // Reading
+                    eventHelper.setName(stringHelper.substring(1, stringHelper.length()-1));
+                    counter++;
+                } else if (counter == 2) {
+                    eventHelper.setDay(Integer.parseInt(stringHelper.substring(7, stringHelper.length())));
+                    counter++;
+                } else if (counter == 3) {
+                    eventHelper.setMonth(Integer.parseInt(stringHelper.substring(8, stringHelper.length())));
+                    counter++;
+                } else if (counter == 4) {
+                    eventHelper.setYear(Integer.parseInt(stringHelper.substring(7, stringHelper.length())));
+                    counter++;
+                } else if (counter == 5) {
+                    eventHelper.setStartTimeHour(Integer.parseInt(stringHelper.substring(12, 14)));
+                    eventHelper.setStartTimeMinute(Integer.parseInt(stringHelper.substring(15, 17)));
+                    counter++;
+                } else if (counter == 6) {
+                    eventHelper.setEndTimeHour(Integer.parseInt(stringHelper.substring(10, 12)));
+                    eventHelper.setEndTimeMinute(Integer.parseInt(stringHelper.substring(13, 15)));
+                    counter++;
+                } else if (counter == 7) {
+                    eventHelper.setTeamASquad(stringHelper.substring(14, stringHelper.length()));
+                    counter++;
+                } else if (counter == 8) {
+                    eventHelper.setTeamBSquad(stringHelper.substring(14, stringHelper.length()));
+                    counter++;
+                } else if (counter == 9) {
+                    eventHelper.setTicketPrice(Double.parseDouble(stringHelper.substring(14, stringHelper.length())));
+                    counter++;
+                } else if (counter == 10) {
+                    eventHelper.setStadium(stringHelper.substring(10, stringHelper.length()));
+                    counter++;
+                } else if (counter == 11) {
+                    eventHelper.setDescription(stringHelper.substring(14, stringHelper.length()));
+                    counter = 0;
+                    if (eventHelper.getTeamASquad().toLowerCase().contains(playerName.toLowerCase()) || eventHelper.getTeamBSquad().toLowerCase().contains(playerName.toLowerCase()) ) {
+                        events.add(eventHelper);
+                    }
+                }
+            }
+            br.close();
+        } catch (FileNotFoundException e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+        }
+
+        return events;
+    }
+
+    public static ArrayList<CalendarEvent> getEventsByStadium(String stadiumName) {
+        ArrayList<CalendarEvent> events = new ArrayList<CalendarEvent>();
+
+        try {
+            FileReader fr = new FileReader("assets/events");
+            BufferedReader br = new BufferedReader(fr);
+            CalendarEvent eventHelper = new CalendarEvent();
+            String stringHelper;
+            int counter = 0;
+            if (stadiumName == null)
+                stadiumName = "";
+
+            while((stringHelper = br.readLine()) != null) {
+                if (stringHelper.isEmpty() || stringHelper.charAt(0) == '#')
+                    continue;
+                else if (counter == 0) {
+                    eventHelper = new CalendarEvent();
+                    eventHelper.setId(Integer.parseInt(stringHelper.substring(1,3)));
+                    counter++;
+                }
+
+                else if (counter == 1) {
+                    // Reading
+                    eventHelper.setName(stringHelper.substring(1, stringHelper.length()-1));
+                    counter++;
+                } else if (counter == 2) {
+                    eventHelper.setDay(Integer.parseInt(stringHelper.substring(7, stringHelper.length())));
+                    counter++;
+                } else if (counter == 3) {
+                    eventHelper.setMonth(Integer.parseInt(stringHelper.substring(8, stringHelper.length())));
+                    counter++;
+                } else if (counter == 4) {
+                    eventHelper.setYear(Integer.parseInt(stringHelper.substring(7, stringHelper.length())));
+                    counter++;
+                } else if (counter == 5) {
+                    eventHelper.setStartTimeHour(Integer.parseInt(stringHelper.substring(12, 14)));
+                    eventHelper.setStartTimeMinute(Integer.parseInt(stringHelper.substring(15, 17)));
+                    counter++;
+                } else if (counter == 6) {
+                    eventHelper.setEndTimeHour(Integer.parseInt(stringHelper.substring(10, 12)));
+                    eventHelper.setEndTimeMinute(Integer.parseInt(stringHelper.substring(13, 15)));
+                    counter++;
+                } else if (counter == 7) {
+                    eventHelper.setTeamASquad(stringHelper.substring(14, stringHelper.length()));
+                    counter++;
+                } else if (counter == 8) {
+                    eventHelper.setTeamBSquad(stringHelper.substring(14, stringHelper.length()));
+                    counter++;
+                } else if (counter == 9) {
+                    eventHelper.setTicketPrice(Double.parseDouble(stringHelper.substring(14, stringHelper.length())));
+                    counter++;
+                } else if (counter == 10) {
+                    eventHelper.setStadium(stringHelper.substring(10, stringHelper.length()));
+                    counter++;
+                } else if (counter == 11) {
+                    eventHelper.setDescription(stringHelper.substring(14, stringHelper.length()));
+                    counter = 0;
+                    if (eventHelper.getStadium().toLowerCase().contains(stadiumName.toLowerCase())) {
+                        events.add(eventHelper);
+                    }
+                }
+            }
+            br.close();
+        } catch (FileNotFoundException e) {
+            JOptionPane.showMessageDialog(null, "Error (FileNoFound): " + e.getMessage());
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "Error (IOException): " + e.getMessage());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error(Exception): " + e.getMessage());
+        }
+
+        return events;
+    }
 
 }

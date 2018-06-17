@@ -197,7 +197,7 @@ public class CalendarEditFrame extends JFrame implements ActionListener {
     private void _loadEvents() {
         eventsComboBox.removeAllItems();
 
-        events = EventQueryProcessor.getEventByDate(_getSelectedDay(), cal.get(Calendar.MONTH)+1, cal.get(Calendar.YEAR));
+        events = EventQueryProcessor.getEventsByDate(_getSelectedDay(), cal.get(Calendar.MONTH)+1, cal.get(Calendar.YEAR));
         for(int i=0; i < events.size(); i++)
                 eventsComboBox.addItem(events.get(i).getName());
 

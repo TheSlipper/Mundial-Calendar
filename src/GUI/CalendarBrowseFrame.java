@@ -103,7 +103,9 @@ public class CalendarBrowseFrame extends JFrame implements ActionListener{
             // Get the year
             int year = (cal.get(Calendar.YEAR));
 
-            ArrayList eventsList = EventQueryProcessor.getEventByDate(day, month, year);
+            ArrayList eventsList = EventQueryProcessor.getEventsByDate(day, month, year);
+            if (eventsList.isEmpty())
+                throw new Exception();
             String message = "";
             for (int i=0; i < eventsList.size(); i++)
                 message = message + eventsList.get(i).toString()+"\r\n\r\n";
